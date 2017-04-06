@@ -14,7 +14,6 @@ grant all privileges on pixie_test.* to rocky;
 flush privileges;------刷新权限相关表
 
 3.安装mysql
-
 apt-get install mysql-server
 apt-get install mysql-client
 apt-get install libmysqlclient-dev
@@ -24,9 +23,10 @@ apt-get install libmysqlclient-dev
 在etc/mysql的底层cnf文件中修改
 改完systemctl restart mysql
 
-5.ip a
-   isof -i:5000
-   kill -9 4356
+5.
+ip a
+lsof -i:5000
+kill -9 4356
 
 6.
 top---cpu
