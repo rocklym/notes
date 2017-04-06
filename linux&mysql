@@ -1,0 +1,35 @@
+1.基本命令
+mysql -u root -p
+show databases;
+use flask-----要用的数据库
+show tables;
+drop database flaskr_db_test
+delete from user where username='admin1'
+
+
+2.创建数据库
+create database pixie_test default charset utf8;
+create user rocky identified by '11111';
+grant all privileges on pixie_test.* to rocky;
+flush privileges;------刷新权限相关表
+
+3.安装mysql
+
+apt-get install mysql-server
+apt-get install mysql-client
+apt-get install libmysqlclient-dev
+
+4.监听地址修改
+默认是127.0.0.1，要给别人用，就得改0.0.0.0
+在etc/mysql的底层cnf文件中修改
+改完systemctl restart mysql
+
+5.ip a
+   isof -i:5000
+   kill -9 4356
+
+6.
+top---cpu
+free -g---memory
+df -h---disk
+iostat -x 2 5---io性能

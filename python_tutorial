@@ -1,0 +1,62 @@
+syntax
+1.a try statement’s else clause runs when no exception occurs, and a loop’s else clause runs when no break occurs.
+2.
+def initlog(*args):
+...     pass   # Remember to implement this!
+
+3.The defalut value of function is evaluated only once at the point of function definition in the defining scope
+4.def f(args, **kwargs)
+
+data strutcures
+1.list：ordered
+(1)methods：append(x), extend(L), insert(i, x), remove(x), pop(), index(x), count(x), sort(cmp=None, key=None, reverse=False), reverse()
+(2)using lists as stacks:easy and efficient
+     using lists as queues:not efficient,use collections.deque
+     from collections import deque
+     queue = deque([])
+     queue.popleft
+(3)comprehensions:
+     for x in range(10):
+          squares.append(x**2)
+     squares=[x**2 for x in range(10)]---more concise and readable
+     squares=map(lambda x:x**2,range(10))
+
+     [(x, y) for x in [1, 2, 3] for y in [3, 1, 4] if x != y]---mad but amazing
+
+     vec = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+     print [x for element in vec for x in element]---bravo
+(5)del：
+     del a[2]
+     del a[:]
+     del a---delete entire variable
+
+2.tuple：ordered,immutable
+(1)singleton='hi',---ugly but effective
+(2)t=12345,54321,'hello'
+
+3.set：unordered,with no duplicate elements
+(1)vec=[1,2,2,3,4,4]
+     new_vec=set(vec)---set[(1,2,3,4)]
+(2)5 in new_vec---False
+(3)a = set('abracadabra') --- set(['a', 'r', 'b', 'c', 'd'])
+
+     b = set('alacazam') ---  set(['a', 'c', 'z', 'm', 'l'])
+     a & b     a | b     a - b     a ^ b---set operations
+
+4.dict：unordered,keys are immutable
+(1)key() methond returns a list of allthe keys used in the dictionary
+(2)dict(('sape', 4139), ('guido', 4127), ('jack', 4098))---{'sape': 4139, 'jack': 4098, 'guido': 4127}
+     dict(sape=4139, guido=4127, jack=4098)---when the keys are simple strings
+(3)comprehension：{x:x*2 for x in (2,4,6)}
+
+Functional programming
+1.lambda
+lambda x: x + n
+2.filter()
+filter(lambda x: x % 3 == 0 or x % 5 == 0, range(2, 25))
+3.map()
+map(lambda x: x ** 2, range(11))
+map(lambda x, y: x + y, range(8), range(8))---two arguments
+4.reduce()
+reduce(lambda x, y: x + y, range(1, 11))---sum=55
+reduce(lambda x, y: x + y, range(1, 11), 10)---sum=65
