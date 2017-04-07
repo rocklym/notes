@@ -6,6 +6,10 @@ def initlog(*args):
 
 3.The defalut value of function is evaluated only once at the point of function definition in the defining scope
 4.def f(args, **kwargs)
+5.operator：numberical(+, *) > comparision(in, not in) > boolean(not > and > or)
+6.comparison:
+(1)0 == 0.0
+(2)list < string < tuple
 
 data strutcures
 1.list：ordered
@@ -48,6 +52,17 @@ data strutcures
 (2)dict(('sape', 4139), ('guido', 4127), ('jack', 4098))---{'sape': 4139, 'jack': 4098, 'guido': 4127}
      dict(sape=4139, guido=4127, jack=4098)---when the keys are simple strings
 (3)comprehension：{x:x*2 for x in (2,4,6)}
+
+5.looping techniques
+(1)enumerate()：index and corresponding value.
+     for i, v in enumerate(list)
+(2)zip()：to loop over two or more sequences at the same time.
+     for x, y in zip(list1, list2)
+(3)xrange：more efficient than range.
+     xrange(5)---a generator;     list(xrange(5))---[0, 1, 2, 3, 4]
+(4)reversed()：reversed(xrange(1, 10, 2))
+     sorted()：sorted(set(list))
+     iteritems()：for k, v in dict_cav.iteritems()---23 - LeBron James
 
 Functional programming
 1.lambda
