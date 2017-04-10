@@ -75,3 +75,26 @@ map(lambda x, y: x + y, range(8), range(8))---two arguments
 4.reduce()
 reduce(lambda x, y: x + y, range(1, 11))---sum=55
 reduce(lambda x, y: x + y, range(1, 11), 10)---sum=65
+
+Module
+1.from app import *---import all names except those beginning with an underscore(_), and it's frowned upon.
+2.sys.path is a list of strings that determines the interpreter's search path for modules. You can modify it using standard list operations:sys.path.append('/ufs/guido/lib/python')
+
+Output and Input
+1.repr()：is meant to generate representations which can be read by the interpreter. Like str().
+2.str(x).rjust()：right-justifies a string in a field of a given width by padding it with spaces on the left. (ljust(),center())
+3.str.zfill()：pads a numeric string on the left with zeros.
+4.format()：{1:10d}---second variable;width of string is 10;decimal
+5.old string formatting：%5.3f---3.142
+6.f=open('filename','w')--r+(b),a(append) read and write binary mode,windows need.
+f.read()     f.readline()--only return strings
+7.seek(offset,from_what)：from_what---0,beginning;1,current;2,end.
+8.good practise with:
+with open('filename','r') as f:
+     read_data=f.read()
+f.closed()
+9.json
+(1)x=json.dumps([1,'good','list'])
+(2)f=open('json.txt','w')
+     json.dump(x,f)
+(3)json.load(f)
