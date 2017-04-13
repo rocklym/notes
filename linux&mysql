@@ -12,6 +12,7 @@ create database pixie_test default charset utf8;
 create user rocky identified by '11111';
 grant all privileges on pixie_test.* to rocky;
 flush privileges;------刷新权限相关表
+drop user rock;
 
 3.安装mysql
 
