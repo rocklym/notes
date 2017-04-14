@@ -98,3 +98,23 @@ f.closed()
 (2)f=open('json.txt','w')
      json.dump(x,f)
 (3)json.load(f)
+
+Exception
+1.A finally clause is always executed before leaving the try statement, whether an exception has occurred or not. When an exception has occurred int the try clause and has not been handled by an except clause, it is re-raised after the finally clause has been executed.
+
+Class
+1.top-level：__main__.
+2.namespace：The local namespace for a function is created when the function is called, and deleted when the function returns or raises an exception that is not handled within the function. Of course, recursive invocations each have their own local namespace.
+3.nested scopes：
+(1)local names(innermost)->non-local, non-global names->the current module's global names->namespace containing built-in names(outermost).
+(2)If no global statement is in effect, assignments to names always go into the innermost scope. Assignments do not copy data, they just bind names to objects.
+4.attribute and method：class MyClassx=MyClass()
+(1)x.f is a method object, not a function object.
+(2)A method object can be stored away and called at a later time.
+     xf = x.f
+     print xf()
+(3)The object is passed as the first argument of the function.
+     x.f() is exactly equivalent to MyClass.f(x)
+(4)To avoid sharing data, use instance variable.
+5.Inheritance：
+(1)isinstance(), issubclass()
