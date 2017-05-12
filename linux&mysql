@@ -6,6 +6,10 @@ show tables;
 drop database flaskr_db_test
 delete from user where username='admin1'
 
+.open flask.db
+.table
+
+
 
 2.创建数据库
 create database pixie_test default charset utf8;
