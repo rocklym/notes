@@ -35,7 +35,7 @@ apt-get install libmysqlclient-dev
 
 6.
 top---cpu
-free -g---memory
+free -h---memory
 df -h---disk
 iostat -x 2 5---io性能
 
