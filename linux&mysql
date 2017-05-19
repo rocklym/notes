@@ -29,9 +29,17 @@ apt-get install libmysqlclient-dev
 在etc/mysql的底层cnf文件中修改
 改完systemctl restart mysql
 
-5.ip a
-   lsof -i:5000
-   kill -9 4356
+5.
+ip a
+
+lsof -i:5000
+kill -9 4356
+
+nc -z -w1 192.168.152.132 5986
+echo $?
+
+tcpdump -i ens33 host 192.168.62.13 -w winrm2.cap
+
 
 6.
 top---cpu
