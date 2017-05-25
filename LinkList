@@ -7,7 +7,7 @@ class Node(object):
         self.next = None
 
 
-class Linkedlist:
+class Linkedlist(object):
     def __init__(self):
         self.head = Node(None)
         self.tail = self.head
