@@ -1,0 +1,32 @@
+# -*- coding: utf-8 -*-
+
+
+class Node(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+
+class Linkedlist:
+    def __init__(self):
+        self.head = Node(None)
+        self.tail = self.head
+
+    def add(self, val):
+        temp = Node(val)
+        self.tail.next = temp
+        self.tail = temp
+
+    def delete(self, node):
+        node.val = node.next.val
+        node.next = node.next.next
+
+    
+if __name__ == '__main__':
+    link = Linkedlist()
+    link.head.val = 4
+    link.add(5)
+    link.add(6)
+    link.add(7)
+    link.delete(link.head.next)
+    print link.head.next.val
