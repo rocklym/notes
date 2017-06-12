@@ -1,6 +1,8 @@
-A.python2(str, unicode) 
-  python3(bytes, str)
-  
+1.
+python2(str, unicode) 
+python3(bytes, str)
+
+
 def to_str(bytes_or_str):
     if isinstance(bytes_or_str, bytes):
         value = bytes_or_str.decode('utf-8')
