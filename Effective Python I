@@ -19,3 +19,31 @@ def to_bytes(bytes_or_str):
     return value  # Instance of bytes
   
  
+2.
+用辅助函数来取代复杂表达式
+
+
+def get_first_int(values, key, default=0):
+    found = values.get(key, [''])
+    if found[0]:
+        found = int(found[0])
+    else:
+        found = default
+    return found
+    
+3.
+slice
+
+a = [1, 2, 3, 4, 5, 6, 7, 8]
+b = a[:]
+print b
+# [1, 2, 3, 4, 5, 6, 7, 8]
+b[:] = [11, 12, 13]
+print b
+# [11, 12, 13]
+
+a.不用start, end, stride都写
+b.尽量stride写负数
+c.如果一定要同时写start, end, stride,就分成两个来写
+b = a[::2]  # [1, 3, 5, 7]
+c = b[1:-1]  # [3, 5]
