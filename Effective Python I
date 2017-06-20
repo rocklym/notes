@@ -47,3 +47,24 @@ b.尽量stride写负数
 c.如果一定要同时写start, end, stride,就分成两个来写
 b = a[::2]  # [1, 3, 5, 7]
 c = b[1:-1]  # [3, 5]
+
+
+4.
+Use list(dict, set) comprehension instead of using map or filter.
+Use generator expression while encountering big data---用过一轮就不能用了
+
+
+text = ['agag', 'bababagag', 'gadgagagaha']
+it = (len(x) for x in text)
+ti = [len(x) for x in text]
+
+print(it)   # generator expression
+<generator object <genexpr> at 0x0000024A63146A98>
+
+print(ti)   # comprehension
+[4, 9, 11]
+
+print(next(it))
+4
+print(next(it))
+9   ---一个一个输出
