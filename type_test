@@ -1,0 +1,27 @@
+from exceptions import TypeError
+
+
+class Test():
+    def __init__(self):
+        pass
+
+
+t = type(1)
+l = [1, 2]
+d = {'age': 15}
+e = TypeError()
+
+if __name__ == '__main__':
+    if isinstance(t, type):
+        print 'This is a type'
+    if isinstance(l, list):
+        print 'This is a list'
+    if isinstance(d, dict):
+        print 'This is a dict'
+    if isinstance(e, Exception):
+        print 'This is an exception'
+    if isinstance(Test, object):
+        print 'This is a object'
+    if isinstance(Test(), object):
+        print 'This is a object'
+    print type(Test)
