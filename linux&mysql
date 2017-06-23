@@ -7,6 +7,7 @@ drop database flaskr_db_test
 delete from user where username='admin1'
 update operators set disabled=1 where id =2
 
+
 .open flask.db
 .table
 
