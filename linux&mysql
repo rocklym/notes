@@ -7,6 +7,8 @@ drop database flaskr_db_test
 delete from user where username='admin1';
 update operators set disabled=1 where id =2;
 alter table operator_server add disabled bool;
+alter table operation_book rename column is_emergecy to is_emergency;
+
 
 
 .open flask.db
