@@ -5,7 +5,7 @@ use flask-----要用的数据库
 show tables;
 drop database flaskr_db_test
 delete from user where username='admin1';
-update operators set disabled=1 where id =2;
+update operators set disabled=1 where id=2;
 alter table operator_server add disabled bool;
 alter table operation_book rename column is_emergecy to is_emergency;
 insert into operators ('login','password_hash') values ('rock','pbkdf2:sha1:1000$1Mj0a7Qo$0db9c545d78cf7f8d65ba5920ec1ef3857f2fc04');
@@ -32,7 +32,7 @@ apt-get install mysql-client
 apt-get install libmysqlclient-dev
 
 4.监听地址修改
-默认是127.0.0.1，要给别人用，就得改0.0.0.0
+默认是127.0.0.1，如果要全局使用，就得改0.0.0.0
 在etc/mysql的底层cnf文件中修改
 改完systemctl restart mysql
 
