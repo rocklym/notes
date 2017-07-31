@@ -1,6 +1,49 @@
 # -*- coding: UTF-8 -*-
 #!usr/bin/env python
 
+
+python2(str, unicode) 
+python3(bytes, str)
+
+
+def to_str(bytes_or_str):
+    if isinstance(bytes_or_str, bytes):
+        value = bytes_or_str.decode('utf-8')
+    else:
+        value = bytes_or_str
+    return value  # Instance of str
+
+
+def to_bytes(bytes_or_str):
+    if isinstance(bytes_or_str, str):
+        value = bytes_or_str.encode('utf-8')
+    else:
+        value = bytes_or_str
+    return value  # Instance of bytes
+    
+Use list(dict, set) comprehension instead of using map or filter.
+Use generator expression while encountering big data---用过一轮就不能用了
+
+
+
+generator
+text = ['agag', 'bababagag', 'gadgagagaha']
+it = (len(x) for x in text)
+ti = [len(x) for x in text]
+
+print(it)   # generator expression
+<generator object <genexpr> at 0x0000024A63146A98>
+
+print(ti)   # comprehension
+[4, 9, 11]
+
+print(next(it))
+4
+print(next(it))
+9   ---一个一个输出
+
+
+
 syntax
 1.a try statement’s else clause runs when no exception occurs, and a loop’s else clause runs when no break occurs.
 2.
