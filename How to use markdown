@@ -1,0 +1,9 @@
+### 代码高亮
+```python
+from collections import Counter
+
+c = Counter()
+for ch in 'abstract':
+    c[ch] = c[ch] + 1
+print c
+```
