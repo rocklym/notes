@@ -164,3 +164,14 @@ Class
 (4)To avoid sharing data, use instance variable.
 5.Inheritance：
 (1)isinstance(), issubclass()
+
+
+collections:
+1.namedtuple: 可以命名的tuple，Point = namedtuple('Point', ['x', 'y']);
+2.deque: 双向队列，有appendleft和popleft；
+3.defaultdict: 当key不存在时不返回keyError,dd = defaultdict(lambda: 'N/A');
+4.OrderedDict: 按照插入的顺序将key排列，FIFO;
+5.Counter: dict的一个子类，当key不存在时不返回keyError而返回数字0，用于统计。
+
+
+
