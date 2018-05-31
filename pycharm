@@ -1,3 +1,9 @@
-1.ctrl+shift+F: search in path;
-2.ctrl+D: copy current row
-  ctrl+Y: delete current row
+1.
+ctrl+shift+F: search in path;
+
+2.
+ctrl+D: copy current row
+ctrl+Y: delete current row
+
+3.
+ctrl+B: jump to declare or define?
