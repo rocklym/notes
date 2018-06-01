@@ -7,3 +7,7 @@ ctrl+Y: delete current row
 
 3.
 ctrl+B: jump to declare or define?
+
+4.
+shift+alt+F9: DEBUG
+F8: next
