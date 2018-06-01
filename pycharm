@@ -11,3 +11,6 @@ ctrl+B: jump to declare or define?
 4.
 shift+alt+F9: DEBUG
 F8: next
+
+5.
+ctrl+G: jump to x line
