@@ -17,6 +17,7 @@ top---cpu
 free -h---memory
 df -h---disk
 iostat -x 2 5---io性能
+chkconfig --list 查看service
 
 3.
 /bin 二进制可执行命令
