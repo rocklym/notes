@@ -8,6 +8,11 @@ drop database flaskr_db_test
 
 delete from user where username='admin1';
 
+# 删除表数据
+delete from tablename;
+truncate table tablename -----id重置
+
+
 update operators set disabled=1 where id=2;
 
 alter table operator_server add disabled bool;
