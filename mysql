@@ -24,7 +24,8 @@ insert into operators ('login','password_hash') values ('rock','pbkdf2:sha1:1000
 # 更改数据类型
 alter table userrote change commodity_id commodity_id varchar(40);
 
-
+# 统计数据项个数
+select count(*) from user_login_info;
 
 
 .open flask.db
