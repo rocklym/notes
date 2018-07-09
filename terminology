@@ -1,6 +1,6 @@
 1.委托回报：非成交（如撤单）时的发回的report
 2.成交回报：成交时发回的report
-3.Tick数据：一秒两次的snapshot, 不会cross，内容可以理解为bid_price, bid_quantity, offer_price, offer_quantity
+3.Tick数据：一秒两次的snapshot, 不会cross，内容可以理解为bid_price, bid_quantity, ask_price, ask_quantity
 4.K线：一个特定的时间周期内数据的状态图。
 5.BAR数据：条形图，一条k线就是一个bar数据。
 6.合约乘数：合约价值除于合约指数，如合约乘数410，指数250，价值102500
