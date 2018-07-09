@@ -15,14 +15,14 @@
 
 
 
-基础界面文件 uiBasicWidget
-主界面文件 uiCtaWidget
-模型文件 ctaBasicModel
-回测实例的参数文件 json/CTA_setting.json
-回测的合约信息 ContractInfo.json
-任务管理界面 uiCtaTaskWidget
-任务池 ctaTaskPool
-基础任务 ctaTask
+uiBasicWidget 基础界面文件 
+uiCtaWidget 主界面文件 
+ctaBasicModel 模型文件 
+json/CTA_setting.json 回测实例的参数文件
+ContractInfo.json 回测的合约信息 
+uiCtaTaskWidget 任务管理界面 
+ctaTaskPool 任务池 
+ctaTask 基础任务 
 uiCrosshair,uiKLine K线十字光标和K线核心界面
 uiCtaKLine K线分析工具
 QIPythonWidget 命令行交互
