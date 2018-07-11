@@ -1,0 +1,107 @@
+中间价公式----rb1810+5
+解析字符串，算rb1810合约的盘口中间价，再+5,比如100
+
+
+做市合约
+rb1810
+
+
+对冲合约
+如果需要对冲，rb1812
+
+
+报价方向
+买、卖、买卖
+
+
+中间调整--offset=1
+100(mmPrice)+1=101
+
+
+报价宽度---10
+bidP1 = 100 + 1 - 10/5 = 96
+askP1 = 100 + 1 + 10+5 = 101
+
+askP0、bidP0: 合约TICK的卖一、买一价
+
+
+宽度限制
+市场上买1和卖1之间的差值，太大表示流动性太差
+
+
+报价数量
+一单的手数
+
+
+仅开仓 --- 只买或卖
+自动开平 --- 自动平仓
+
+
+消极（优于1档）---比如市场ask1=3，bid1=7，我们报价ask<3, bid>7
+积极（允许超价）--- 根据算出的价格，允许ask>3, bid<7
+
+
+对冲/不对称
+是否对冲的选择
+
+
+盘口中价=(bidP1 + askP1) / 2.0
+
+
+openOrderInfo: dict，内容为 [ORDER_SHORTOPEN, price, v]
+closeOrderInfo: dict，内容为 [ORDER_SHORTOPEN, price, v, xid, dt]
+oinfo: list, 与closeOrderInfo中成员格式一致
+
+
+buyS0、shortS0: 针对合约
+coverS0、sellS0: 针对对冲合约
+是对买卖的一层封装，方便整个策略生命周期中的订单管理
+
+
+#######################################################################################
+#######################################################################################
+
+
+self.costL = 0      # 买开成本
+self.costS = 0      # 卖开成本
+self.posL = 0       # 多头持仓
+self.posS = 0       # 空头持仓
+self.posLLock = 0   # 多头持仓冻结
+self.posSLock = 0   # 空头持仓冻结
+self.posLOpen = 0   # 多头持仓开仓量
+self.posSOpen = 0   # 空头持仓开仓量
+self.costhL = 0     # 对冲卖开成本
+self.costhS = 0     # 对冲卖开成本
+self.poshL = 0      # 对冲多头持仓
+self.poshS = 0      # 对冲空头持仓
+self.poshLLock = 0  # 对冲多头持仓冻结
+self.poshSLock = 0  # 对冲空头持仓冻结
+self.poshLOpen = 0  # 对冲多头持仓开仓量
+self.poshSOpen = 0  # 对冲空头持仓开仓量
+self.posPNL = 0     # 持仓盈亏
+self.posHPNL = 0    # 对冲持仓盈亏
+self.closePNL = 0   # 平仓盈亏
+self.closeHPNL = 0  # 对冲平仓盈亏
+self.openOrderInfo = {}     # 开仓委托信息
+self.closeOrderInfo = {}    # 平仓委托信息
+self.openPos = {}           # 开仓持仓
+self.dTime = datetime.timedelta(seconds=30)     # 对冲超时时间
+self.cancelOrders = {}      # 撤单信息
+
+
+
+bidP1 = 100 + 1 - 10/5 = 96
+askP1 = 100 + 1 + 10+5 = 101
+
+askP0、bidP0: 合约TICK的卖一、买一价
+
+
+
+posSAV = self.posS - self.posSLock
+posLAV = self.posL - self.posLLock
+
+posSAV = self.poshS - self.poshSLock
+posLAV = self.poshL - self.poshLLock
+
+#######################################################################################
+#######################################################################################
