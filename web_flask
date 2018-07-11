@@ -1,0 +1,151 @@
+测试环境
+114.255.198.235:30011
+10.1.43.152:7070
+
+生成环境
+114.255.198.239:30011
+10.1.41.150
+
+
+qdam
+zbjy#20170517
+
+
+传输打包文件至/home/qdam(记得改成英文名，unzip)
+
+
+
+安装anecoda2
+chmod 755 Anecoda
+./Anecoda
+. ~/.bashrc
+
+
+
+#################
+解压脚本
+全复制过去，修改，然后运行脚本
+
+
+
+
+
+（pypi上下载缺省的文件包，解压，‘easy_install .’ 安装）
+Flask-SQLAlchemy
+visitor
+dominate
+Flask-Bootstrap
+Flask-Login
+flask-nav
+jupyter-pip
+future 0.16
+pyecharts
+maxminddb
+geoip2
+WTForms
+Flask-WTF
+Flask-Uploads
+alipay
+PyMySQL
+gunicorn
+pbr
+Tempita
+sqlparse
+sqlalchemy-migrate
+
+
+
+futures 3.2和setuptools未安装
+
+
+
+
+
+###################################################################################################################################################
+安装Nginx的三个依赖包
+openssl、pcre、zlib
+tar –xzvf + cd + ./configure && make && make install
+
+
+
+安装Nginx时config要带ssl参数，且路径为压缩包源码而不是解压后的地址
+./configure --prefix=/opt/nginx --with-http_stub_status_module --with-http_ssl_module --with-zlib --with-pcre --with-openssl=/usr/local/ssl
+make && make install
+
+
+
+
+
+chmod -R 755 /usr/local/*
+###################################################################################################################################################
+
+
+
+复制原Nginx配置到新的文件底部
+:tab new ***
+y+shift+g
+gt
+shift+g+p
+
+
+
+
+
+su - root 切换到root（但是这样容易误操作，所以不建议这么做）
+sudo vim /etc/sudoers  在root下新加用户qdam
+
+
+
+修改/etc/nginx/conf.d/default.conf文件：（usr/local/nginx/conf/nginx.conf）
+	listen 80 ->30011(对方指定)
+	server name -> 内网 + 对方公网IP(没有http://)
+	删除下面未部署的服务
+	http 8080 -> 7070(未被占用的端口)
+	下一行添加端口号: proxy_set_header Host $host:30011;(两个地方)
+	location的目录做相应修改
+
+
+
+ln –s ln -s /usr/local/nginx/sbin/nginx  /usr/sbin/nginx --- 生成快捷方式
+
+
+
+
+修改updateitweb文件
+8080 -> 7070 
+root ->/home/qdam(记得开头那个，环境变量)
+
+将updataitweb和nginx注册成服务，copy文件至/etc/init.d文件夹下
+vim nginx, 修改config file的路径
+chkconfig –add updateitweb(nginx)完成注册
+service updateitweb start
+
+
+安装gunicorn，修改run.sh中的命令其服务（记得修改为127.0.0.1:7070）
+
+
+修改config.py
+BASEURL是公网地址
+
+
+联系在mysql中添加wxy的数据库
+mysql -u wxy -p wxy -h 10.1.41.155(如果部署在另一台服务，记得还要改config中的mysql)
+生成数据库表（python db_create.py）
+在数据库中添加一个管理员用来初始化登录(dean:123456)
+insert into user values (1,'dean','wxywxy666','pbkdf2:sha1:1000$2O9ISXrb$929ceb4dddbac7d7878c9c50e1f152f84c277b7d')
+
+
+
+
+
+#########################################################################################################
+通过nginx代理访问出现 ERR_CONTENT_LENGTH_MISMATCH 错误 修改nginx下proxy_temp的权限为root   
+命令为 chown root proxy_temp  问题解决
+如果还不能解决 使用 chown -R root nginx 
+并在nginx.conf里面  worker_processes 1；前面加上   user root;
+########################################################################################################
+
+
+如果不能下载，可能是相应的子目录没有给读权限，chmod 755 web_flask/
+
+
