@@ -1,0 +1,18 @@
+# -*- coding: utf-8 -*-
+import sys
+import os
+import pandas as pd
+from app.models import ClientmgrInfo
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+clients = ClientmgrInfo.query.all()
+data = [client.clientaddr for client in clients if client.clientaddr is not None]
+list_need = list(set(data))
+
+list_done = os.listdir(os.path.join(os.getcwd() + '\\download0'))
+
+res = list(set(list_need) ^ set(list_done))
+pd_data = pd.DataFrame(res)
+pd_data.to_csv('res.csv')
