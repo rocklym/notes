@@ -15,7 +15,9 @@ truncate table tablename -----id重置
 
 update operators set disabled=1 where id=2;
 
-alter table operator_server add disabled bool;
+# 新增或删除字段
+alter table clientmgr_info add comment varchar(100);
+alter table clientmgr_info drop comment;
 
 alter table operation_book rename column is_emergecy to is_emergency;
 
