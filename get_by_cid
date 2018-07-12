@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+import sys
+import pandas as pd
+from app.models import UserLoginInfo
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+pd_data = pd.DataFrame([c.__dict__ for c in UserLoginInfo.query.all()])
+
+
+def get_by_cid(cid):
+    if cid == 'QhAll':
+        return True
+    else:
+        return False
+
+
+pd_data[pd_data['cid'].apply(get_by_cid)].to_csv('QhAll.csv')
