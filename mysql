@@ -12,7 +12,7 @@ delete from user where username='admin1';
 delete from tablename;
 truncate table tablename -----id重置
 
-
+# 更改某一列的值
 update operators set disabled=1 where id=2;
 
 # 新增或删除字段
