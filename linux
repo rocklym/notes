@@ -10,6 +10,10 @@ kill -9 4356
 nc -z -w1 192.168.152.132 5986
 echo $?
 
+# ssh登录
+ssh qdquest@192.168.100.93
+
+
 tcpdump -i ens33 host 192.168.62.13 -w winrm2.cap
 
 chmod (-R) 755 web_flask/
