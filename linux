@@ -4,6 +4,9 @@ ip a
 tar -xzvf 
 unzip
 
+# 跳到行前
+ctrl+a
+
 lsof -i:5000
 kill -9 4356
 
