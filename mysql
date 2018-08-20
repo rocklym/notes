@@ -39,7 +39,7 @@ select distinct protype from broker_info;
 .table
 
 # 新增表
-create table infoOTC(
+create table otc_info(
     id INT NOT NULL AUTO_INCREMENT,
     cid VARCHAR(100) NOT NULL,
     menu_id VARCHAR(100) NOT NULL,
