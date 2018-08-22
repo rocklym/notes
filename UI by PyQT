@@ -1,0 +1,51 @@
+DemoStrategy2
+self.widgetClass = KLWidget
+self.widget = None
+
+
+ctaTemplate
+# widgetClass 3次；widget 8次
+class QtGuiSupport(QtCore.QObject):
+	"""支持QT的对象类"""
+	
+	signal = QtCore.Signal(object)
+    signalc = QtCore.Signal(object)
+
+	def __init__(self):
+		...
+		self.signal.connect(self.showStrategyWidget)
+		self.signalc.connect(self.closeStrategyWidget)
+		...
+	
+	def showStrategyWidget(self, s):
+        try:
+            if s.widgetClass is not None:
+                if self.widgetDict.get(s.name) is None:
+					# 给策略实例的widget赋值
+                    s.widget = s.widgetClass(s)
+                    self.widgetDict[s.name] = s.widget
+                    s.widget.show()
+                else:
+                    self.widgetDict[s.name].show()
+			...
+				
+	def closeStrategyWidget(self, s):
+		if s.widgetClass is not None:
+			...
+		
+		
+class KLWidget(QWidget):
+    """简单交易组件，策略界面的主要类
+	实例化的时候需要输入策略的实例"""
+	 def __init__(self, strategy, parent=None):
+	
+# qtsp是QtGuiSupport类的实例	
+cls.qtsp = QtGuiSupport()
+
+
+# 开启关闭界面
+onStart, onStop 
+-> getGui
+   closeGui 
+-> self.__class__.qtsp.signal.emit(self),
+   self.__class__.qtsp.signalc.emit(self)
