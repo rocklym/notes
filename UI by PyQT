@@ -6,7 +6,10 @@ self.widget = None
 ctaTemplate
 # widgetClass 3次；widget 8次
 class QtGuiSupport(QtCore.QObject):
-	"""支持QT的对象类"""
+	"""
+	支持QT的对象类
+	用来开启和关闭KLWidget
+	"""
 	
 	signal = QtCore.Signal(object)
     signalc = QtCore.Signal(object)
@@ -35,8 +38,10 @@ class QtGuiSupport(QtCore.QObject):
 		
 		
 class KLWidget(QWidget):
-    """简单交易组件，策略界面的主要类
-	实例化的时候需要输入策略的实例"""
+    """
+	简单交易组件，策略界面的主要类
+	实例化的时候需要输入策略的实例
+	"""
 	 def __init__(self, strategy, parent=None):
 	
 # qtsp是QtGuiSupport类的实例	
@@ -45,7 +50,24 @@ cls.qtsp = QtGuiSupport()
 
 # 开启关闭界面
 onStart, onStop 
--> getGui
-   closeGui 
--> self.__class__.qtsp.signal.emit(self),
-   self.__class__.qtsp.signalc.emit(self)
+->  getGui
+    closeGui
+	
+	self.widget.clear()
+->  # self将策略实例传给QtGuiSupport中两个函数，从而用来实例化KLWidget
+	self.__class__.qtsp.signal.emit(self),
+    self.__class__.qtsp.signalc.emit(self)
+	
+	# self.widget.addBar(data)中的data中的bar和sig,stateData结合mainSigs、subSigs中data其他的部分
+	self.bars = []
+    self.sigs = []
+	# mainSigs+subSigs的数据
+    self.stateData = defaultdict(list)
+	
+	->  for s in (self.strategy.mainSigs + self.strategy.subSigs):
+			self.stateData[s].append(data[s])
+	
+	# 情况K线的对象
+    self.uiKLine.clearData()
+    self.uiKLine.clearSig()
+    self.started = False
