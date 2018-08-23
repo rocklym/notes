@@ -1,0 +1,33 @@
+# encoding: UTF-8
+import os
+import pandas as pd
+import shutil
+
+path = u'F:\Backup\data\home\\bak\data\shfe\\2018\\07'
+os.chdir(path)
+csvs = os.listdir(path)
+for csv in csvs:
+    if os.path.isfile(csv):
+        name = csv.split('_')[0]
+        if not os.path.exists(name):
+            os.mkdir(name)
+        shutil.move(csv, name)
+
+
+def add_exchange(dir_name):
+    for _name in os.listdir(dir_name):
+        _path = os.path.join(dir_name, _name)
+
+        if os.path.isfile(_path):
+            print _path
+            csv_f = _path
+            df = pd.read_csv(csv_f)
+            df = df.convert_objects(convert_numeric=True)
+            if 'exchange' not in df.columns:
+                df['exchange'] = 'SHFE'
+            df.to_csv(csv_f)
+        else:
+            add_exchange(_path)
+
+
+add_exchange(path)
