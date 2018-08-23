@@ -89,7 +89,7 @@ self.cancelOrders = {}      # 撤单信息
 
 
 
-bidP1 = 100 + 1 - 10/5 = 96
+bidP1 = 100 + 1 - 10-5 = 96
 askP1 = 100 + 1 + 10+5 = 101
 
 askP0、bidP0: 合约TICK的卖一、买一价
