@@ -1,0 +1,14 @@
+# encoding: UTF-8
+import os
+import shutil
+
+names = []
+path = u'F:\Backup\数据\home\\bak\data\shfe\\2018\\07'
+os.chdir(path)
+csvs = os.listdir(path)
+for csv in csvs:
+    if os.path.isfile(csv):
+        name = csv.split('_')[0]
+        if not os.path.exists(name):
+            os.mkdir(name)
+        shutil.move(csv, name)
