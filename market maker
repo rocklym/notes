@@ -12,6 +12,8 @@ rb1810
 报价方向
 买、卖、买卖
 
+# 盘口中价
+做市合约的(askPrice1 + bidPrice1) / 2 =100 
 
 中间调整--offset=1
 100(mmPrice)+1=101
