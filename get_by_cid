@@ -10,10 +10,11 @@ pd_data = pd.DataFrame([c.__dict__ for c in UserLoginInfo.query.all()])
 
 
 def get_by_cid(cid):
-    if cid == 'QhAll':
+    # if cid == 'QhDalu':
+    if cid is not None and 'Qh' in cid:
         return True
     else:
         return False
 
 
-pd_data[pd_data['cid'].apply(get_by_cid)].to_csv('QhAll.csv')
+pd_data[pd_data['cid'].apply(get_by_cid)].sort_values(by='cid').to_csv('Qh.csv')
