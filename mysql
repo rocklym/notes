@@ -8,6 +8,9 @@ drop database flaskr_db_test
 
 delete from user where username='admin1';
 
+# 设置属性为不可重复
+alter table wxy.userrote_info add UNIQUE(userid);
+
 # 更改表名
 alter table commodit rename commodity;
 
