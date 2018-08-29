@@ -8,6 +8,9 @@ drop database flaskr_db_test
 
 delete from user where username='admin1';
 
+# 更改表名
+alter table commodit rename commodity;
+
 # 删除表数据
 delete from tablename;
 truncate table tablename -----id重置
