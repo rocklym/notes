@@ -1,0 +1,14 @@
+# encoding: UTF-8
+import datetime
+import re
+
+future = 'm1811'
+p = r'(\d+)'
+pattern = re.compile(p)
+matcher = re.search(pattern, future)
+year, month = matcher.group(1)[:-2], matcher.group(1)[-2:]
+print year, month
+date1 = datetime.datetime.strptime('20{0}-{1}-15'.format(year, month), '%Y-%m-%d').date()
+
+date2 = datetime.datetime.now().date()
+print (date1 - date2).days
