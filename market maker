@@ -13,9 +13,15 @@ rb1810
 买、卖、买卖
 
 # 盘口中价
+midPrice
 做市合约的(askPrice1 + bidPrice1) / 2 =100 
 
-中间调整--offset=1
+#中间价
+mmprice
+
+中间调整
+mmprice + 
+--offset=1
 100(mmPrice)+1=101
 
 
