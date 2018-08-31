@@ -1,3 +1,11 @@
+future = 'm1811'
+p = r'(\d+)'
+pattern = re.compile(p)
+matcher = re.search(pattern, future)
+print matcher.group(1) # 1811
+
+
+
 字符	描述
 \	将下一个字符标记为一个特殊字符、或一个原义字符、或一个 向后引用、或一个八进制转义符。例如，'n' 匹配字符 "n"。'\n' 匹配一个换行符。序列 '\\' 匹配 "\" 而 "\(" 则匹配 "("。
 ^	匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 '\n' 或 '\r' 之后的位置。
