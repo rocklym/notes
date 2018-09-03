@@ -1,0 +1,17 @@
+ pos_list = self.getInvestorPosition(self.investor)
+        for pos in pos_list:
+            if pos['InstrumentID'] in self.symbolList:
+                if pos['Direction'] == u'多':
+                    if pos['Position'] != 0:
+                        self.pos[pos['InstrumentID']] = pos['Position']
+                    # 昨持多仓
+                    self.ypos0L[pos['InstrumentID']] = pos['YdPositionClose']
+                    # 今持多仓
+                    self.tpos0L[pos['InstrumentID']] = pos['Position'] - pos['YdPositionClose']
+                elif pos['Direction'] == u'空':
+                    if pos['Position'] != 0:
+                        self.pos[pos['InstrumentID']] = -pos['Position']
+                    # 昨持空仓
+                    self.ypos0S[pos['InstrumentID']] = -pos['YdPositionClose']
+                    # 今持空仓
+                    self.tpos0S[pos['InstrumentID']] = -pos['Position'] + pos['YdPositionClose']
