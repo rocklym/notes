@@ -48,13 +48,22 @@ select distinct protype from broker_info;
 mysqldump -uwxy -pwxy wxy > wxy.sql
 
 # 新增表
-create table otc_info(
+create table broker_app(
     id INT NOT NULL AUTO_INCREMENT,
-    cid VARCHAR(100) NOT NULL,
-    menu_id VARCHAR(100) NOT NULL,
-    url VARCHAR(100) NOT NULL,
+	brokerid VARCHAR(50) NOT NULL,
+	name VARCHAR(50) NOT NULL,
+	sitename VARCHAR(50) NOT NULL,
+	channeltype VARCHAR(50) NOT NULL,
+	AddressTrade VARCHAR(100) NOT NULL,
+	AddressMarket VARCHAR(100) NOT NULL,
+	AddressChart VARCHAR(100) NOT NULL,
+	AddressUpgrade VARCHAR(100) NOT NULL,
+    jpg text NOT NULL,
+	icon text NOT NULL,
+    update_time datetime NOT NULL,
+    comment VARCHAR(100) NOT NULL,
     PRIMARY KEY ( `id` )
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 2.创建数据库
