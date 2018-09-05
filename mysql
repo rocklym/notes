@@ -50,21 +50,21 @@ mysqldump -uwxy -pwxy wxy > wxy.sql
 # 新增表
 create table broker_app(
     id INT NOT NULL AUTO_INCREMENT,
-	brokerid VARCHAR(50) NOT NULL,
-	name VARCHAR(50) NOT NULL,
-	sitename VARCHAR(50) NOT NULL,
-	channeltype VARCHAR(50) NOT NULL,
-	AddressTrade VARCHAR(100) NOT NULL,
-	AddressMarket VARCHAR(100) NOT NULL,
-	AddressChart VARCHAR(100) NOT NULL,
-	AddressUpgrade VARCHAR(100) NOT NULL,
-    jpg text NOT NULL,
-	icon text NOT NULL,
-    update_time datetime NOT NULL,
-    comment VARCHAR(100) NOT NULL,
+	brokerid VARCHAR(50),
+	cid VARCHAR(50),
+	name VARCHAR(50),
+	sitename VARCHAR(50),
+	channeltype VARCHAR(50),
+	AddressTrade VARCHAR(100),
+	AddressMarket VARCHAR(100),
+	AddressChart VARCHAR(100),
+	AddressUpgrade VARCHAR(100),
+    jpg text,
+	icon text,
+    timestamp datetime,
+    comment VARCHAR(100),
     PRIMARY KEY ( `id` )
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 
 2.创建数据库
 create database pixie_test default charset utf8;
