@@ -1,0 +1,79 @@
+# encoding: UTF-8
+import os
+import re
+import time
+from datetime import datetime
+from poplib import POP3_SSL
+from email.parser import Parser
+from email.utils import parseaddr
+
+host = 'pop.qq.com'
+user = '262364762@qq.com'
+pwd = 'eeomssxvexjbbjje'
+
+"""
+xinfu2018@foxmail.com
+Xinfu123456
+POP3:izzurhmlzoapdfed
+
+3290196572@qq.com
+wei9988uniteX
+POP3:dkfhntxikhlncihg
+"""
+
+
+def mbs_to_utf8(s, code):
+    return s.decode(code).encode("utf-8")
+
+
+def init():
+    server = POP3_SSL(host)
+    server.user(user)
+    server.pass_(pwd)
+    return server.stat()[0]
+
+
+def server_conn():
+    server = POP3_SSL(host)
+    server.user(user)
+    server.pass_(pwd)
+    return server
+
+
+def find_verification_code(content):
+    syntax = r"([0-9]{6})为您的登录验证码"
+    pattern = re.compile(syntax)
+    matcher = re.search(pattern, content)
+    return matcher
+
+
+if __name__ == '__main__':
+    old_count = init()
+    while 1:
+        time.sleep(30)
+        print datetime.now()
+        pop_server = server_conn()
+        pop_server.set_debuglevel(1)
+        new_count = pop_server.stat()[0]
+        if new_count > old_count:
+            for i in xrange(old_count, new_count):
+                # 获取整个邮件的原始文本
+                lines = pop_server.retr(i + 1)[1]
+                msg_content = b'\r\n'.join(lines).decode('utf-8')
+                msg = Parser().parsestr(msg_content)
+                print 'Date: {0}\nFrom: {1}\nTo: {2}'.format(msg['Date'],
+                                                             parseaddr(msg.get('from'))[1],
+                                                             parseaddr(msg.get('to'))[1])
+                for part in msg.walk():
+                    content_type = part.get_content_type()
+                    # 获取原始编码类型
+                    origin_code = part.get_content_charset()
+                    if content_type == 'text/plain':
+                        data = part.get_payload(decode=True)
+                        if origin_code:
+                            data = mbs_to_utf8(data, origin_code)
+                        matcher = find_verification_code(data)
+                        if matcher:
+                            print 'Data: {}'.format(matcher.group(1))
+                            os.system('echo \"10011,1,{}\" > /home/qdam/qoffer1/flow/pFile'.format(matcher.group(1)))
+            old_count = new_count
