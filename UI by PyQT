@@ -1,10 +1,17 @@
-# 逻辑
+## 逻辑
 1.任意一个策略文件被实例化的时候，都会起一个守护进程t，运行函数StartGui
 2.StartGui中实例化Qt类，cls.qtsp = QtGuiSupport()
 3.QtGuiSupport的__init__中，用信号槽关联图像对象函数
   self.signal.connect(self.showStrategyWidget)
   self.signalc.connect(self.closeStrategyWidget)
-
+4.showStrategyWidget中，实例化widget
+  s.widget = s.widgetClass(s)
+  # widgetClass=KLWidget
+  # 删除实例后创建同名实例，self.widget为None
+5.getGui, closeGui
+  self.__class__.qtsp.signal.emit(self)
+  self.__class__.qtsp.signalc.emit(self)
+  # 将策略实例self传递给4中的s
 
 
 
