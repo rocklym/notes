@@ -1,0 +1,43 @@
+# encoding: UTF-8
+from time import ctime, sleep
+import threading
+
+
+def music(name):
+    for _ in xrange(2):
+        print 'I am listening to {0}. {1}'.format(name, ctime())
+        sleep(1)
+
+
+def movie(name):
+    for _ in xrange(2):
+        print 'I am watching {0}. {1}'.format(name, ctime())
+        sleep(4)
+
+
+def player(name):
+    f = name.rsplit('.', 1)[1]
+    if f == 'mp3':
+        music(name)
+    elif f == 'mp4':
+        movie(name)
+    else:
+        print 'Error: The format can not be recognized.'
+
+
+works = ['I love u.mp3', 'P.S. I love u.mp4']
+threads = list()
+for i in xrange(len(works)):
+    t = threading.Thread(target=player, args=(works[i],))
+    threads.append(t)
+
+if __name__ == '__main__':
+    for i in xrange(len(works)):
+        threads[i].setDaemon(True)
+        threads[i].start()
+
+    # 另起一个for
+    for i in xrange(len(works)):
+        threads[i].join()
+
+    print 'Now is {}'.format(ctime())
