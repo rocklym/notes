@@ -19,6 +19,9 @@ ssh qdquest@192.168.100.93
 
 tcpdump -i ens33 host 192.168.62.13 -w winrm2.cap
 
+# 模拟post表单
+curl "http://192.168.100.93/app" -F "cid=IdTest"
+
 chmod (-R) 755 web_flask/
 r=4, w=2, x=1,表示
 1、文件所有者可读可写可执行
