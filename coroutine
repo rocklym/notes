@@ -1,0 +1,21 @@
+# encoding: UTF-8
+import gevent
+import urllib2
+from gevent import monkey
+
+monkey.patch_all()
+
+
+def f(url):
+    print 'Get {}'.format(url)
+    resp = urllib2.urlopen(url)
+    data = resp.read()
+    print '{0} bytes received from {1}'.format(len(data), url)
+
+
+if __name__ == '__main__':
+    gevent.joinall([
+        gevent.spawn(f, 'https://www.python.org/'),
+        gevent.spawn(f, 'https://www.yahoo.com/'),
+        gevent.spawn(f, 'https://github.com/')
+    ])
