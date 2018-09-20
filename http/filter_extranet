@@ -1,0 +1,9 @@
+def filter_extranet():
+    host = request.headers['Host'].split(':')[0]
+    return True if host == '203.110.179.29' else False
+    
+    
+    # if filter_extranet():
+    #     pass
+    # else:
+    #     return u'Access from extranet is not allowed'
