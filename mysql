@@ -5,8 +5,10 @@ use flask-----要用的数据库
 show tables;
 show columns from user; = describe user;
 drop database flaskr_db_test
-
 delete from user where username='admin1';
+
+# 查看版本
+status；
 
 # 设置属性为不可重复
 alter table wxy.userrote_info add UNIQUE(userid);
