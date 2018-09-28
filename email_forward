@@ -49,6 +49,7 @@ def find_verification_code(content):
 
 if __name__ == '__main__':
     old_count = server_init()
+    print 'Email forward server started.'
     while 1:
         time.sleep(30)
         print datetime.now()
@@ -75,6 +76,7 @@ if __name__ == '__main__':
                         matcher = find_verification_code(data)
                         if matcher:
                             print 'Data: {}'.format(matcher.group(1))
-                            print 'echo \"10011,1,{}\" > /home/qdam/qoffer1/flow/pFile'
+                            print 'echo \"10011,1,{}\" > /home/qdam/qoffer1/flow/pFile'.format(matcher.group(1))
                             os.system('echo \"10011,1,{}\" > /home/qdam/qoffer1/flow/pFile'.format(matcher.group(1)))
             old_count = new_count
+
