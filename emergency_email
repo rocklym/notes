@@ -51,7 +51,7 @@ def find_verification_code(content):
 def get_verification_code(num):
     """返回验证码，不符合条件返回None"""
     lines = pop_server.retr(num)[1]
-    msg_content = b'\r\n'.join(lines).decode('utf-8')
+    msg_content = b'\r\n'.join(lines)
     msg = Parser().parsestr(msg_content)
     print 'Date: {0}\nFrom: {1}\nTo: {2}'.format(msg['Date'],
                                                  parseaddr(msg.get('from'))[1],
