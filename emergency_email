@@ -1,0 +1,104 @@
+# encoding: UTF-8
+import os
+import re
+import time
+from datetime import datetime
+from poplib import POP3_SSL
+from email.parser import Parser
+from email.utils import parseaddr
+
+host = 'pop.qq.com'
+user = '262364762@qq.com'
+pwd = 'eeomssxvexjbbjje'
+# user = '3290196572@qq.com'
+# pwd = 'dkfhntxikhlncihg'
+
+target_sender = 'rocklym@163.com'
+# target_sender = 'ops.service@grandlyifg.com'
+old_string = ''
+
+"""
+xinfu2018@foxmail.com
+Xinfu123456
+POP3:izzurhmlzoapdfed
+
+3290196572@qq.com
+wei9988uniteX
+POP3:dkfhntxikhlncihg
+"""
+
+
+def mbs_to_utf8(s, code):
+    return s.decode(code).encode("utf-8")
+
+
+def server_conn():
+    """连接服务器"""
+    server = POP3_SSL(host)
+    server.user(user)
+    server.pass_(pwd)
+    return server
+
+
+def find_verification_code(content):
+    """返回匹配的正则内容"""
+    syntax = r"([0-9]{6})为您的登录验证码"
+    pattern = re.compile(syntax)
+    matcher = re.search(pattern, content)
+    return matcher
+
+
+def get_verification_code(num):
+    """返回验证码，不符合条件返回None"""
+    lines = pop_server.retr(num)[1]
+    msg_content = b'\r\n'.join(lines).decode('utf-8')
+    msg = Parser().parsestr(msg_content)
+    print 'Date: {0}\nFrom: {1}\nTo: {2}'.format(msg['Date'],
+                                                 parseaddr(msg.get('from'))[1],
+                                                 parseaddr(msg.get('to'))[1])
+    if target_sender == parseaddr(msg.get('from'))[1]:
+        print '# Received from target sender. #'
+        for part in msg.walk():
+            content_type = part.get_content_type()
+            # 获取原始编码类型
+            origin_code = part.get_content_charset()
+            if content_type == 'text/plain':
+                data = part.get_payload(decode=True)
+                if origin_code:
+                    data = mbs_to_utf8(data, origin_code)
+                matcher = find_verification_code(data)
+                if matcher:
+                    new_string = matcher.group(1)
+                    print '# Regular expression authorized successfully. #'
+                    return new_string
+                else:
+                    return None
+    else:
+        print '# Not from target sender. #'
+        return None
+
+
+if __name__ == '__main__':
+    pop_server = server_conn()
+    origin_count = pop_server.stat()[0]
+    old_string = get_verification_code(origin_count)
+    print 'Old code is: {}'.format(old_string)
+    # 发起重新连接请求,验证码可以为任意数字
+    print 'echo \"10011,3,999999\" > /home/qdam/qoffer1/flow/pFile'
+    os.system('echo \"10011,3,999999\" > /home/qdam/qoffer1/flow/pFile')
+    while 1:
+        time.sleep(30)
+        print datetime.now()
+        pop_server = server_conn()
+        pop_server.set_debuglevel(1)
+        latest_count = pop_server.stat()[0]
+        new_string = get_verification_code(latest_count)
+        print 'Old code is: {}'.format(old_string)
+        print 'New code is: {}'.format(new_string)
+        if new_string is not None and old_string != new_string:
+            print 'Data: {}'.format(new_string)
+            print 'echo \"10011,1,{}\" > /home/qdam/qoffer1/flow/pFile'.format(new_string)
+            os.system('echo \"10011,1,{}\" > /home/qdam/qoffer1/flow/pFile'.format(new_string))
+            old_string = new_string
+        else:
+            print 'Code doesn\'t change.'
