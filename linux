@@ -16,6 +16,10 @@ echo $?
 # ssh登录
 ssh qdquest@192.168.100.93
 
+# 关联so文件时
+ln -s /root/QDAM_V1.36_trade_20170314_3_linux_python/*.so /usr/lib
+
+
 
 tcpdump -i ens33 host 192.168.62.13 -w winrm2.cap
 
