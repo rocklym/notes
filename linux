@@ -7,8 +7,11 @@ unzip
 # 跳到行前
 ctrl+a
 
+# 查看端口进程
 lsof -i:5000
+# 杀进程
 kill -9 4356
+killall gunicorn
 
 nc -z -w1 192.168.152.132 5986
 echo $?
