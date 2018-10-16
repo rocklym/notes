@@ -4,6 +4,10 @@ ip a
 tar -xzvf 
 unzip
 
+# 关闭已打开的文件
+ll -a
+rm -rf xxxx
+
 # 跳到行前
 ctrl+a
 
