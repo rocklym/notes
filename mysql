@@ -46,6 +46,10 @@ select * from userrote_info order by id desc;
 # 查询属性的值去重
 select distinct protype from broker_info;
 
+# 更改唯一索引unique
+create unique index userid on userrote_info(userid);
+alter table userrote_info drop index userid;
+
 .open flask.db
 .table
 
