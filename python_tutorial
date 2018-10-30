@@ -14,6 +14,12 @@ a+	      可读可写	     创建	        否，追加写
 python2(str, unicode) 
 python3(bytes, str)
 
+# encode & decode
+python2
+encode: unicode ---> str
+decode: str ---> unicode
+
+
 
 def to_str(bytes_or_str):
     if isinstance(bytes_or_str, bytes):
