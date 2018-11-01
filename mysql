@@ -76,9 +76,9 @@ create table broker_app(
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 2.创建数据库
-create database pixie_test default charset utf8;
-create user rocky identified by '11111';
-grant all privileges on pixie_test.* to rocky;
+create database python_lab_test default charset utf8;
+create user rock identified by 'rock@qt';
+grant all privileges on python_lab_test.* to rock;
 flush privileges;------刷新权限相关表
 drop user rock;
 
