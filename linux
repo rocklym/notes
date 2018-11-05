@@ -34,8 +34,9 @@ tcpdump -i ens33 host 192.168.62.13 -w winrm2.cap
 # form
 curl "http://192.168.100.93/userrote" -F "cid=TestVer" -F "uid=122231_9999"
 # json
-curl "http://localhost:10002/rest/roles" -H "Content-type: application/json" -X POST -d '[{"name":"tester"}]'
-
+curl "http://localhost:10002/rest/roles" -H "Content-type: application/json" -X POST -d '[{"name":"tester1"}]'
+curl "http://localhost:10002/rest/role/id/3" -H "Content-type: application/json" -X PUT -d '[{"name":"tester2"}]'
+curl "http://localhost:10002/rest/role/id/3" -H "Content-type: application/json" -X DELETE 
 
 
 chmod (-R) 755 web_flask/
