@@ -30,8 +30,13 @@ ln -s /root/QDAM_V1.36_trade_20170314_3_linux_python/*.so /usr/lib
 
 tcpdump -i ens33 host 192.168.62.13 -w winrm2.cap
 
-# 模拟post表单
+# curl
+# form
 curl "http://192.168.100.93/userrote" -F "cid=TestVer" -F "uid=122231_9999"
+# json
+curl "http://localhost:10002/rest/roles" -H "Content-type: application/json" -X POST -d '[{"name":"tester"}]'
+
+
 
 chmod (-R) 755 web_flask/
 r=4, w=2, x=1,表示
