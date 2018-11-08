@@ -53,8 +53,11 @@ alter table userrote_info drop index userid;
 .open flask.db
 .table
 
-# 导入数据库的表结构和数据
-mysqldump -uwxy -pwxy wxy > wxy.sql
+# 导出
+mysqldump -urock -prockqt1234 python_lab_test > python_lab_test.sql
+# 导入
+mysql
+source /root/Python-Lab/python_lab_test.sql
 
 # 新增表
 create table broker_app(
