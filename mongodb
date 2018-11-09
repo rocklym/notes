@@ -1,3 +1,44 @@
-导入文件
+# windows导入文件
 1、cmd到mongodb的bin目录下: C:\Program Files\MongoDB\Server\3.4\bin>
 2、mongoimport --db VnTrader_1Min_Db --collection rb9999 --file rb9999.json    单个文件不要加--jsonArray
+
+
+
+### linux安装步骤 
+# 解压移到指定文件夹
+tar -xvf mongodb-linux-x86_64-rhel62-3.2.7.tgz
+mv mongodb-linux-x86_64-rhel62-3.2.7 /usr/local/mongodb
+
+
+# 修改环境变量
+vim /etc/profile
+
+export MONGODB_HOME=/usr/local/mongodb
+export PATH=$MONGODB_HOME/bin:$PATH
+
+source /etc/profile
+
+
+# 创建目录
+mkdir -p /data/mongodb
+mkdir -p /data/mongodb/log
+touch /data/mongodb/log/mongodb.log
+
+# 添加配置文件
+vim /etc/mongodb.conf
+
+dbpath=/data/mongodb
+logpath=/data/mongodb/log/mongodb.log
+logappend=true
+port=27017
+fork=true
+##auth = true # 先关闭, 创建好用户在启动
+
+
+# 通过配置文件启动
+mongod -f /etc/mongodb.conf
+
+
+# 进入管理shell
+cd /usr/local/mongodb/bin
+./mongo
