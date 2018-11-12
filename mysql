@@ -58,22 +58,12 @@ mysql
 source /root/Python-Lab/python_lab_test.sql
 
 # 新增表
-create table broker_app(
+create table auth_info(
     id INT NOT NULL AUTO_INCREMENT,
-	brokerid VARCHAR(50),
-	cid VARCHAR(50),
-	name VARCHAR(50),
-	sitename VARCHAR(50),
-	channeltype VARCHAR(50),
-	AddressTrade VARCHAR(100),
-	AddressMarket VARCHAR(100),
-	AddressChart VARCHAR(100),
-	AddressUpgrade VARCHAR(100),
-    jpg text,
-	icon text,
-    timestamp datetime,
-    comment VARCHAR(100),
-    PRIMARY KEY ( `id` )
+	group_name VARCHAR(64),
+    group_info text,
+    PRIMARY KEY ( `id` ),
+    UNIQUE (`group_name`)
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 2.创建数据库
