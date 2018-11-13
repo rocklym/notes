@@ -79,10 +79,17 @@ http {
             root /root/web_flask/;
         }
 
+        if ($host = '203.110.179.27'){
+            set $_port 60403;
+        }
+        if ($host = '192.168.100.93' ){
+            set $_port 80;
+        }
+
         location / {
             proxy_pass http://gunicorn;
-            # proxy_set_header Host $host:$server_port;
-            proxy_set_header Host $host:60403;
+            proxy_set_header Host $host:$_port;
+            # proxy_set_header Host $host:60403;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Real-PORT $remote_port;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
