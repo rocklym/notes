@@ -23,9 +23,14 @@ truncate table tablename -----id重置
 # 更改某一列的值
 update operators set disabled=1 where id=2;
 
-# 新增或删除字段
+# 新增字段
 alter table userrote_info add status varchar(64);
+
+# 修改字段
 alter table userrote_info change stauts status varchar(64);
+
+# 删除字段
+alter table broker_app drop column name;
 
 insert into operators ('login','password_hash') values ('rock','pbkdf2:sha1:1000$1Mj0a7Qo$0db9c545d78cf7f8d65ba5920ec1ef3857f2fc04');
 
