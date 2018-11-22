@@ -32,6 +32,7 @@ alter table userrote_info change stauts status varchar(64);
 # 删除字段
 alter table broker_app drop column name;
 
+# 插入数值
 insert into operators ('login','password_hash') values ('rock','pbkdf2:sha1:1000$1Mj0a7Qo$0db9c545d78cf7f8d65ba5920ec1ef3857f2fc04');
 
 # 更改数据类型
