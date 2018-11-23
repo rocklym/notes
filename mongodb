@@ -4,6 +4,17 @@
 
 
 
+# 常规操作
+show dbs;
+use tick_db
+show collections;
+db.rb1901.count()
+db.rb1901.find()
+db.rb1901.drop()
+
+
+#######################################################################################################################################
+
 ### linux安装步骤 
 # 解压移到指定文件夹
 tar -xvf mongodb-linux-x86_64-rhel62-3.2.7.tgz
@@ -42,3 +53,7 @@ mongod -f /etc/mongodb.conf
 # 进入管理shell
 cd /usr/local/mongodb/bin
 ./mongo
+
+
+
+
