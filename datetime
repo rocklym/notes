@@ -1,0 +1,2 @@
+# 年月日 时分秒.毫秒
+strptime(date_str, '%Y%m%d %H:%M:%S.%f')
