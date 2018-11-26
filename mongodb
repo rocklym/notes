@@ -1,7 +1,6 @@
-# windows导入文件
-1、cmd到mongodb的bin目录下: C:\Program Files\MongoDB\Server\3.4\bin>
-2、mongoimport --db VnTrader_1Min_Db --collection rb9999 --file rb9999.json    单个文件不要加--jsonArray
-
+# 进入管理shell
+cd /usr/local/mongodb/bin
+./mongo
 
 
 # 常规操作
@@ -14,6 +13,10 @@ db.rb1901.drop()
 
 
 #######################################################################################################################################
+# windows导入文件
+1、cmd到mongodb的bin目录下: C:\Program Files\MongoDB\Server\3.4\bin>
+2、mongoimport --db VnTrader_1Min_Db --collection rb9999 --file rb9999.json    单个文件不要加--jsonArray
+
 
 ### linux安装步骤 
 # 解压移到指定文件夹
