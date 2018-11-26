@@ -6,6 +6,7 @@ cd /usr/local/mongodb/bin
 # 常规操作
 show dbs;
 use tick_db
+db.dropDatabase()  # 删除当前选择的db
 show collections;
 db.rb1901.count()
 db.rb1901.find().sort({"datetime":-1}).limit(20)
