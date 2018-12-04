@@ -1,1 +1,1 @@
-'http://122.144.129.233:60007/hismin?instrumentid={}&datatype=1&exchangeid={}&startday={}&secretkey=1&daynum={}&rtnnum=20'.format(symbol,exchange,datetime.datetime.now().strftime('%Y%m%d'),years)
+http://122.144.129.233:60016/hismin?datatype=8&instrumentid=sp1906&exchangeid=SHFE&secretkey=8&startday=20181203&size=500&starttime=23:39:00&daynum=2&rtnnum=1000
