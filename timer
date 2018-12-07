@@ -1,0 +1,20 @@
+# encoding: UTF-8
+import threading
+import time
+
+
+def func_timer():
+    print 'This is a timer'
+    global timer
+    # 间隔3秒，调用func_timer
+    timer = threading.Timer(3, func_timer)
+    timer.start()
+
+
+if __name__ == '__main__':
+    timer = threading.Timer(1, func_timer)
+    timer.start()
+
+    time.sleep(14)
+    # 取消定时器
+    timer.cancel()
