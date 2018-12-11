@@ -12,6 +12,7 @@ F5
 
 # go to defination
 F12
+ctrl + left
 
 # delete current line
 ctrl + shift + k
