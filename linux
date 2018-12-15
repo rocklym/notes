@@ -58,6 +58,11 @@ iostat -x 2 5---io性能
 chkconfig --list 查看service
 ps aux  查看进程
 
+查看最后一次重启时间命令
+who -b 
+查看历史重启时间命令
+last reboot
+
 
 3.
 /bin 二进制可执行命令
