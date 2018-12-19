@@ -19,3 +19,6 @@ ctrl + shift + k
 
 # find file
 ctrl + p
+
+# go back
+alt + <-
