@@ -17,3 +17,7 @@ ctrl+G: jump to x line
 
 6.
 ctrl+tab: switcher
+
+7.
+ctrl+z: back
+ctrl+shift+z: de-back
