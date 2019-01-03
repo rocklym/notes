@@ -1,0 +1,12 @@
+# 安装
+1.make
+2.cd src
+make install
+
+# 修改redis的配置文件，demon true
+
+# 启动
+cd /usr/local/redis/bin
+./redis-server ../etc/redis.conf
+
+# 停止
