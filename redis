@@ -10,3 +10,4 @@ cd /usr/local/redis/bin
 ./redis-server ../etc/redis.conf
 
 # 停止
+redis-cli shutdown
