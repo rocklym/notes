@@ -1,0 +1,1 @@
+curl http://192.168.100.93:10002/upload-config?username=rock -F "file=@C:\\Users\\Administrator\\Desktop\\comp1.txt"  -X POST
