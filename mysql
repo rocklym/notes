@@ -45,6 +45,9 @@ select count(*) from user_login_info;
 # 只查询前10个数据
 select name from rules limit 10;
 
+# 查询userid及每个的个数
+select userid, count(*) from user_login_info where cid='QhDalu' group by userid order by count(*) DESC;
+
 # 查询结果降序
 select * from userrote_info order by id desc;
 
