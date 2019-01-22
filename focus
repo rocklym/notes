@@ -1,0 +1,38 @@
+# start
+1、npm install cnpm
+2、cnpm install		--自动安装package.json中的包
+3、npm start		--编译文件，增量更新
+4、electron .		--启动tab页面
+5、账号密码：
+01000009
+123456
+
+
+# dispersePages
+1、窗口的css和action，由html+jsx构成
+2、增加新的之后要在disperge.js中添加
+
+# package.json
+所有的脚本命令
+
+# main.js
+1、配置环境地址
+2、调用windows中的方法
+3、只生产空窗口，具体样式和动作在despersePages中定义
+
+# windows
+1、main.js调用的方法
+
+
+# 指令单的debug问题
+disperseDict\OrderTradeList.js
+
+# pages-react
+1、所有的操作都写在这个文件夹里面，主要是componets
+2、错误提示
+<div id="showErrorDiv" className={publicStyle.pubShowErrorDiv}>网络连接异常</div>定义；
+jsx文件的componetDidMount里ShowErrorFunc.dismissError()
+再在try-catch中ShowErrorFunc.showError("查询期货做市参数失败, " + error.errorMsg);
+
+# 需了解的知识点
+electron + less + immutable
