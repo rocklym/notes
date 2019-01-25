@@ -1,4 +1,7 @@
+# 开启
+sudo ./usr/local/nginx/sbin/nginx
 
+#########################################################################
 user  root;
 worker_processes  auto;
 
