@@ -58,6 +58,9 @@ iostat -x 2 5---io性能
 chkconfig --list 查看service
 ps aux  查看进程
 
+# 查看当前文件夹下文件的大小
+du -sh *
+
 查看最后一次重启时间命令
 who -b 
 查看历史重启时间命令
