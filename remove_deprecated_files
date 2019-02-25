@@ -32,3 +32,55 @@ if __name__ == '__main__':
             if timestamp_to_time(create_time).split('-', 1)[0] == '2016' or \
                     timestamp_to_time(create_time).split('-', 1)[0] == '2017':
                 shutil.move(_f, deprecated_folder)
+
+####################################################################################################################
+# -*- coding: utf-8 -*-
+import os
+import shutil
+from app.models import ClientmgrInfo
+
+
+def get_current_path():
+    return os.path.split(os.path.realpath(__file__))[0]
+
+
+def get_deprecated_folder(folder_name):
+    if not os.path.exists(folder_name):
+        os.mkdir(folder_name)
+    return os.path.join(current_path, folder_name)
+
+
+dest_folders = ['download', 'pdb']
+
+if __name__ == '__main__':
+    current_path = get_current_path()
+    deprecated_folder = get_deprecated_folder('deprecated')
+    client_manager_infos = ClientmgrInfo.query.all()
+
+    ################
+    # move deprecated pdb files to target folder
+    version_list = list(set([cmi.lastversion for cmi in client_manager_infos if cmi.lastversion]))
+    pdb_folder = os.path.join(current_path, 'pdb')
+    for f in os.listdir(pdb_folder):
+        if f.rsplit('.', 1)[0][3:] not in version_list:
+            _f = os.path.join(pdb_folder, f)
+            shutil.move(_f, deprecated_folder)
+
+    ################
+    # move deprecated sections to target folder
+    all_update_files = [cmi.asktip.rsplit('/', 1)[-1] for cmi in client_manager_infos if cmi.asktype == '2']
+    # print 'all infos in web: {}'.format(len(all_update_files))
+
+    # remove sections next time, not now!
+    # raw_sections = [cmi.sections for cmi in client_manager_infos if cmi.sections]
+    # for rs in raw_sections:
+    #     all_update_files.extend([rss.rsplit('/', 1)[-1] for rss in rs.split(';')])
+
+    download_folder = os.path.join(current_path, 'download')
+    # print 'all files exist: {}'.format(len(os.listdir(download_folder)))
+
+    for f in os.listdir(download_folder):
+        if f[:2] == 'it' and f not in all_update_files:
+            _f = os.path.join(download_folder, f)
+            shutil.move(_f, deprecated_folder)
+
