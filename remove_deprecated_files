@@ -1,0 +1,34 @@
+# -*- coding: utf-8 -*-
+import os
+import time
+import shutil
+
+
+def get_current_path():
+    return os.path.split(os.path.realpath(__file__))[0]
+
+
+def get_deprecated_folder(folder_name):
+    if not os.path.exists(folder_name):
+        os.mkdir(folder_name)
+    return os.path.join(current_path, folder_name)
+
+
+def timestamp_to_time(timestamp):
+    time_fmt = time.localtime(timestamp)
+    return time.strftime("%Y-%m-%d %H:%M:%S", time_fmt)
+
+
+dest_folders = ['download', 'download0', 'pdb']
+
+if __name__ == '__main__':
+    current_path = get_current_path()
+    deprecated_folder = get_deprecated_folder('deprecated')
+    for dest_folder in dest_folders:
+        target_folder = os.path.join(current_path, dest_folder)
+        for f in os.listdir(os.path.join(current_path, dest_folder)):
+            _f = os.path.join(target_folder, f)
+            create_time = os.path.getctime(_f)
+            if timestamp_to_time(create_time).split('-', 1)[0] == '2016' or \
+                    timestamp_to_time(create_time).split('-', 1)[0] == '2017':
+                shutil.move(_f, deprecated_folder)
