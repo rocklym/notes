@@ -28,7 +28,7 @@ if __name__ == '__main__':
         target_folder = os.path.join(current_path, dest_folder)
         for f in os.listdir(os.path.join(current_path, dest_folder)):
             _f = os.path.join(target_folder, f)
-            create_time = os.path.getctime(_f)
+            create_time = os.path.getmtime(_f)
             if timestamp_to_time(create_time).split('-', 1)[0] == '2016' or \
                     timestamp_to_time(create_time).split('-', 1)[0] == '2017':
                 shutil.move(_f, deprecated_folder)
