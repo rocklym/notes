@@ -26,7 +26,7 @@ if __name__ == '__main__':
     deprecated_folder = get_deprecated_folder('deprecated')
     for dest_folder in dest_folders:
         target_folder = os.path.join(current_path, dest_folder)
-        for f in os.listdir(os.path.join(current_path, dest_folder)):
+        for f in os.listdir(target_folder):
             _f = os.path.join(target_folder, f)
             create_time = os.path.getmtime(_f)
             if timestamp_to_time(create_time).split('-', 1)[0] == '2016' or \
