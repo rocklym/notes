@@ -75,7 +75,7 @@ create table auth_unit(
     group_info text,
     PRIMARY KEY ( `id` ),
     UNIQUE (`group_name`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 2.创建数据库
 create database python_lab_test default charset utf8;
