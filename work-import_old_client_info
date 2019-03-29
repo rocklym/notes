@@ -1,0 +1,49 @@
+# -*- coding: utf-8 -*-
+import datetime
+
+from app import db
+from app.models import UserroteInfo, ClientInfo, ClientRight, ClientMapping
+
+user_rotes = UserroteInfo.query.all()
+for user_rote in user_rotes:
+    # client info
+    if ClientInfo.query.filter_by(name=user_rote.contact).first() is not None:
+        client_info = ClientInfo.query.filter_by(name=user_rote.contact).first()
+        if user_rote.userid not in client_info.user_id.split(';'):
+            client_info.user_id = client_info.user_id + ';' + user_rote.userid
+        if user_rote.cid not in client_info.client_id.split(';'):
+            client_info.client_id = client_info.client_id + ';' + user_rote.cid
+        client_info.timestamp = datetime.datetime.now()
+    else:
+        client_info = ClientInfo(name=user_rote.contact,
+                                 user_id=user_rote.userid,
+                                 client_id=user_rote.cid,
+                                 phone=user_rote.phone,
+                                 email=user_rote.email,
+                                 remarks=user_rote.comment,
+                                 upgrade=True)
+    db.session.add(client_info)
+    db.session.commit()
+
+    # client right
+    if ClientRight.query.filter_by(name=user_rote.contact).first() is None:
+        client_right = ClientRight(client_info_id=client_info.id,
+                                   name=user_rote.contact,
+                                   numbers=1,
+                                   right_string=str(eval(user_rote.roteids)),
+                                   end_time=user_rote.endtime,
+                                   status=user_rote.status,
+                                   remarks=user_rote.comment,
+                                   upgrade=True)
+    else:
+        client_right = ClientRight.query.filter_by(name=user_rote.contact).first()
+        client_right.numbers += 1
+
+    # client mapping
+    client_mapping = ClientMapping(user_id=user_rote.userid,
+                                   client_id=user_rote.cid,
+                                   client_info_id=client_info.id)
+    db.session.add_all([client_right, client_mapping])
+    db.session.commit()
+
+print('What a fucking day!')
