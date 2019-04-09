@@ -101,3 +101,11 @@ apt-get install libmysqlclient-dev
 在etc/mysql的底层cnf文件中修改
 改完systemctl restart mysql
 
+# 取消密码设置限制
+set global validate_password_policy=0;
+set global validate_password_mixed_case_count=0;
+set global validate_password_number_count=0;
+set global validate_password_special_char_count=0;
+set global validate_password_length=0;
+alter user root@localhost identified by 'root';
+
