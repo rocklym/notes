@@ -75,15 +75,15 @@ source /root/wxy.sql
 create table client_info(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(64),
-	user_id VARCHAR(256),
-	client_id VARCHAR(256),
-	phone VARCHAR(16),
-	email VARCHAR(64),
+    user_id VARCHAR(256),
+    client_id VARCHAR(256),
+    phone VARCHAR(16),
+    email VARCHAR(64),
     remarks TEXT,
-	timestamp DATETIME,
+    timestamp DATETIME,
     PRIMARY KEY ( `id` ),
     UNIQUE (`email`),
-	INDEX ( `name` )
+    INDEX ( `name` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 2.创建数据库
