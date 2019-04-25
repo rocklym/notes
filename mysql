@@ -33,6 +33,14 @@ alter table userrote_info change stauts status varchar(64);
 # 删除字段
 alter table broker_app drop column name;
 
+# 新增外键
+alter table materials add type_id int;
+alter table materials add foreign key(type_id) references material_types(id);
+
+# 删除外键
+show create table materials;
+ALTER TABLE materials DROP FOREIGN KEY materials_ibfk_1;
+
 # 插入数值
 insert into operators ('login','password_hash') values ('rock','pbkdf2:sha1:1000$1Mj0a7Qo$0db9c545d78cf7f8d65ba5920ec1ef3857f2fc04');
 
