@@ -27,6 +27,9 @@ update auth_unit set func_or_window='功能权限' where func_or_window='窗口'
 # 新增字段
 alter table userrote_info add status varchar(64);
 
+# 新增时指定默认值
+alter table material_categories add weight int default 100;
+
 # 修改字段
 alter table userrote_info change stauts status varchar(64);
 
