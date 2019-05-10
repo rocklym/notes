@@ -1,0 +1,55 @@
+# encoding: utf-8
+import requests
+import datetime
+import time
+import threading
+
+time_list = list()
+error_list = list()
+threads = list()
+
+
+def test_http():
+    payload = {'exchangeid': 'APEX',
+               'secretkey': 1,
+               'size': 1080,
+               'datatype': 7,
+               'instrumentid': 'FO1909',
+               'startday': '20190508',
+               'starttime': '15:00:00'}
+    resp = requests.post("http://128.106.24.3:8086/hismin", data=payload)
+    resp_time = int(resp.elapsed.microseconds / 1000)
+    time_list.append(resp_time)
+    if resp.status_code != 200:
+        error_list.append(-1)
+
+    return resp_time
+
+
+if __name__ == '__main__':
+    print('#' * 100)
+    # 线程数
+    t_number = int(raw_input('Please enter the amount of request: '))
+
+    start_time = datetime.datetime.now()
+    print('Request starts at {}'.format(start_time))
+
+    for i in range(t_number):
+        t = threading.Thread(target=test_http)
+        threads.append(t)
+    for i in range(t_number):
+        threads[i].setDaemon(True)
+        threads[i].start()
+    for i in range(t_number):
+        threads[i].join()
+
+    end_time = datetime.datetime.now()
+    print('Request ends at {}'.format(end_time))
+    print('Request costs {}'.format(end_time - start_time))
+
+    time.sleep(3)
+    average_time = "{:.3f}".format(float(sum(time_list)) / float(len(time_list)))
+    print('Average response time is {} ms'.format(average_time))
+
+    print("Fail request: {}".format(error_list.count(-1)))
+    print('#' * 100)
