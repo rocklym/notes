@@ -1,6 +1,9 @@
 1.
 ip a
 
+# 压缩
+tar -czf video.tar.gz *.mp4
+# 解压
 tar -xzvf 
 unzip
 
