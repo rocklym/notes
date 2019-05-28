@@ -1,0 +1,16 @@
+# Flask的上下文全局变量
+g, current_app：程序上下文，程序在就在
+session， request：请求上下文，请求的时候在
+底层都是LocalProxy
+
+# Flask的blueprint是什么
+和程序类似，也可以定义路由；蓝本中定义的路由处于休眠状态，直到注册到程序上app.register_blueprint,便于程序项目的结构化
+
+# TCP和UDP有什么区别
+1、连接和无连接
+2、字节流和报文
+3、点到点；1对1、N对N均可
+
+# Nginx的作用
+
+# 多进程、多线程、协程
