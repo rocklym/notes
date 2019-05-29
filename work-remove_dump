@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+import os
+import time
+import datetime
+import shutil
+
+
+def get_current_path():
+    return os.path.split(os.path.realpath(__file__))[0]
+
+
+def get_deprecated_folder(folder_name):
+    if not os.path.exists(folder_name):
+        os.mkdir(folder_name)
+    return os.path.join(current_path, folder_name)
+
+
+def time_to_timestamp(t):
+    time_struct = time.localtime(t)
+    return time.strftime('%Y-%m-%d %H:%M:%S', time_struct)
+
+
+if __name__ == '__main__':
+    current_path = get_current_path()
+    deprecated_folder = get_deprecated_folder('deprecated')
+    dump_folder = os.path.join(current_path, 'dumpbins')
+    for f in os.listdir(dump_folder):
+        _f = os.path.join(dump_folder, f)
+        # 获取文件创建时间
+        create_time = os.path.getctime(_f)  # float
+        create_datetime = time_to_timestamp(create_time)  # str
+        _create_datetime = datetime.datetime.strptime(create_datetime, '%Y-%m-%d %H:%M:%S')  # datetime
+
+        cmp_datetime = datetime.datetime.strptime('2019-05-01', '%Y-%m-%d')
+        # 2019.05.01之前的dump文件全部移到deprecated文件夹
+        if _create_datetime < cmp_datetime:
+            shutil.move(_f, deprecated_folder)
