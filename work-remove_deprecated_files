@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
-import time
 import shutil
+from app.models import ClientmgrInfo, VersionInfo
+from app import db
 
 
 def get_current_path():
@@ -13,74 +14,47 @@ def get_deprecated_folder(folder_name):
         os.mkdir(folder_name)
     return os.path.join(current_path, folder_name)
 
-
-def timestamp_to_time(timestamp):
-    time_fmt = time.localtime(timestamp)
-    return time.strftime("%Y-%m-%d %H:%M:%S", time_fmt)
-
-
-dest_folders = ['download', 'download0', 'pdb']
-
-if __name__ == '__main__':
-    current_path = get_current_path()
-    deprecated_folder = get_deprecated_folder('deprecated')
-    for dest_folder in dest_folders:
-        target_folder = os.path.join(current_path, dest_folder)
-        for f in os.listdir(target_folder):
-            _f = os.path.join(target_folder, f)
-            create_time = os.path.getmtime(_f)
-            if timestamp_to_time(create_time).split('-', 1)[0] == '2016' or \
-                    timestamp_to_time(create_time).split('-', 1)[0] == '2017':
-                shutil.move(_f, deprecated_folder)
-
-####################################################################################################################
-# -*- coding: utf-8 -*-
-import os
-import shutil
-from app.models import ClientmgrInfo
-
-
-def get_current_path():
-    return os.path.split(os.path.realpath(__file__))[0]
-
-
-def get_deprecated_folder(folder_name):
-    if not os.path.exists(folder_name):
-        os.mkdir(folder_name)
-    return os.path.join(current_path, folder_name)
-
-
-dest_folders = ['download', 'pdb']
 
 if __name__ == '__main__':
     current_path = get_current_path()
     deprecated_folder = get_deprecated_folder('deprecated')
     client_manager_infos = ClientmgrInfo.query.all()
-
-    ################
-    # move deprecated pdb files to target folder
-    version_list = list(set([cmi.lastversion for cmi in client_manager_infos if cmi.lastversion]))
     pdb_folder = os.path.join(current_path, 'pdb')
+    download_folder = os.path.join(current_path, 'download')
+
+    # 将不用的PDB文件移至deprecated文件夹
+    version_list = list(set([cmi.lastversion for cmi in client_manager_infos if cmi.lastversion]))
     for f in os.listdir(pdb_folder):
         if f.rsplit('.', 1)[0][3:] not in version_list:
             _f = os.path.join(pdb_folder, f)
             shutil.move(_f, deprecated_folder)
+    print('PDB文件清理完成')
 
-    ################
-    # move deprecated sections to target folder
-    all_update_files = [cmi.asktip.rsplit('/', 1)[-1] for cmi in client_manager_infos if cmi.asktype == '2']
-    # print 'all infos in web: {}'.format(len(all_update_files))
-
-    # remove sections next time, not now!
-    # raw_sections = [cmi.sections for cmi in client_manager_infos if cmi.sections]
-    # for rs in raw_sections:
-    #     all_update_files.extend([rss.rsplit('/', 1)[-1] for rss in rs.split(';')])
-
-    download_folder = os.path.join(current_path, 'download')
-    # print 'all files exist: {}'.format(len(os.listdir(download_folder)))
-
+    # 将不用的全量包移至deprecated文件夹
+    asktip_files = [cmi.asktip.rsplit('/', 1)[-1] for cmi in client_manager_infos if cmi.asktype == '2']  # 全量包
     for f in os.listdir(download_folder):
-        if f[:2] == 'it' and f not in all_update_files:
+        if f[:2] == 'it' and f not in asktip_files:
             _f = os.path.join(download_folder, f)
             shutil.move(_f, deprecated_folder)
+    print('全量包文件清理完成')
 
+    # 将不用的分量包移至deprecated文件夹
+    section_files = []
+    raw_sections = [cmi.sections for cmi in client_manager_infos if cmi.sections]
+    for rs in raw_sections:
+        section_files.extend([rss.rsplit('/', 1)[-1] for rss in rs.split(';')])
+    for f in os.listdir(download_folder):
+        if f not in section_files:
+            _f = os.path.join(download_folder, f)
+            shutil.move(_f, deprecated_folder)
+    print('分量包文件清理完成')
+
+    # 将不用的版本号置为False
+    using_versions = list(set([cmi.lastversion for cmi in client_manager_infos if cmi.lastversion]))
+    version_infos = VersionInfo.query.all()
+    for version_info in version_infos:
+        if version_info.versionid not in using_versions:
+            version_info.is_active = False
+            db.session.add(version_info)
+            db.session.commit()
+    print('版本号清理完成')
