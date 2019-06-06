@@ -1,0 +1,48 @@
+#!/root/anaconda2/bin/python
+# -*- coding: utf-8 -*-
+import paramiko
+from datetime import datetime
+from subprocess import Popen, PIPE
+
+# backup server
+backup_ip = '192.168.100.122'
+backup_port = 22
+backup_user = 'updateit'
+backup_pwd = 'updateit'
+backup_path = '/opt/backup/wxy.sql'
+local_path = '/root/web_flask/wxy.sql'
+
+# test server
+db_ip = '192.168.100.93'
+db_user = 'wxy'
+db_pwd = 'wxy'
+db_name = 'wxy'
+
+
+def get_from_backup(ip, port, user, password, remote_file, local_file):
+    scp = paramiko.Transport(ip, port)
+    scp.connect(username=user, password=password)
+    sftp = paramiko.SFTPClient.from_transport(scp)
+    try:
+        sftp.get(remote_file, local_file)
+        scp.close()
+        return '{}------Get from backup success.'.format(datetime.now())
+    except Exception as e:
+        return e
+
+
+def syn_db(user, password, database, db_file):
+    # open的是一个文件，或以list形式打开？
+    cmd = ['mysql', '-u', user, '-p{}'.format(password), database]
+    process = Popen(cmd, stdin=PIPE, stdout=PIPE)
+    try:
+        res = process.communicate('source {}'.format(db_file))
+        if res == ('', None):
+            return '{}------Syn DB success.'.format(datetime.now())
+    except Exception as e:
+        return e
+
+
+if __name__ == '__main__':
+    print(get_from_backup(backup_ip, backup_port, backup_user, backup_pwd, backup_path, local_path))
+    print(syn_db(db_user, db_pwd, db_name, local_path))
