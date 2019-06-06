@@ -1,5 +1,8 @@
-1.
+# 查看IP
 ip a
+
+# 修改密码
+passwd
 
 # 压缩
 tar -czf video.tar.gz *.mp4
