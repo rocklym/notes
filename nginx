@@ -2,7 +2,8 @@
 sudo ./usr/local/nginx/sbin/nginx
 
 # 重启
-
+cd /usr/sbin
+./nginx -s reload
 
 #########################################################################
 user  root;
