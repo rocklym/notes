@@ -29,14 +29,14 @@ class QtGuiSupport(QtCore.QObject):
 	用来开启和关闭KLWidget
 	"""
 	
-	signal = QtCore.Signal(object)
+    signal = QtCore.Signal(object)
     signalc = QtCore.Signal(object)
 
-	def __init__(self):
-		...
-		self.signal.connect(self.showStrategyWidget)
-		self.signalc.connect(self.closeStrategyWidget)
-		...
+    def __init__(self):
+        ...
+        self.signal.connect(self.showStrategyWidget)
+        self.signalc.connect(self.closeStrategyWidget)
+        ...
 	
 	def showStrategyWidget(self, s):
         try:
@@ -71,15 +71,15 @@ onStart, onStop
 ->  getGui
     closeGui
 	
-	self.widget.clear()
+    self.widget.clear()
 ->  # self将策略实例传给QtGuiSupport中两个函数，从而用来实例化KLWidget
-	self.__class__.qtsp.signal.emit(self),
+    self.__class__.qtsp.signal.emit(self),
     self.__class__.qtsp.signalc.emit(self)
 	
-	# self.widget.addBar(data)中的data中的bar和sig,stateData结合mainSigs、subSigs中data其他的部分
-	self.bars = []
+    # self.widget.addBar(data)中的data中的bar和sig,stateData结合mainSigs、subSigs中data其他的部分
+    self.bars = []
     self.sigs = []
-	# mainSigs+subSigs的数据
+    # mainSigs+subSigs的数据
     self.stateData = defaultdict(list)
 	
 	->  for s in (self.strategy.mainSigs + self.strategy.subSigs):
