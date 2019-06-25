@@ -1,4 +1,4 @@
-1.基本命令
+# 基本命令
 mysql -u root -p
 show databases;
 use flask-----要用的数据库
