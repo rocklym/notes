@@ -59,6 +59,9 @@ select name from rules limit 10;
 # 查询ufx开头的项
 select id from broker_info where apitype like "ufx%";
 
+# 基于不等于某个字段的查询
+select clientid,version_his from clientmgr_info where version_his<>'';
+
 # 查询userid及每个的个数
 select userid, count(*) from user_login_info where cid='QhDalu' group by userid order by count(*) DESC;
 
