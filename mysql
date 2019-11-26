@@ -36,6 +36,9 @@ alter table userrote_info change stauts status varchar(64);
 # 删除字段
 alter table broker_app drop column name;
 
+# 新增自增熟悉的字段，需设为唯一键
+alter table clientmgr_info add column id int not null auto_increment unique key;
+
 # 新增外键
 alter table materials add type_id int;
 alter table materials add foreign key(type_id) references material_types(id);
