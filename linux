@@ -43,6 +43,9 @@ r=4, w=2, x=1,表示
 2、与文件所有者同属一个用户组的其他用户可读可执行
 3、其他用户组可读可执行
 
+# 定时用crontab删除zip中的文件夹
+30 20 * * 1-7 zip -d /root/infinitrader-account/configurations/zhangqiang@hongtazx.com_GtsHTZX_config.zip "trader/[0-9]*/**"
+
 
 
 2.
