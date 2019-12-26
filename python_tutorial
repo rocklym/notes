@@ -11,8 +11,15 @@ a         只能写         创建        否，追加写
 a+        可读可写       创建        否，追加写
 
 
-python2(str, unicode) 
-python3(bytes, str)
+               字符串（内存中，Unicode字符）     字节（传输、保存）
+python2:          unicode                           str 
+python3：          str                              bytes
+
+encode：字符串 ---> 字节   
+decode：字节   ---> 字符串 
+
+
+
 
 # encode & decode
 python2
