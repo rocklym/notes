@@ -55,6 +55,10 @@ df -h---disk
 iostat -x 2 5---io性能
 chkconfig --list 查看service
 ps aux  查看进程
+grep 'physical id' /proc/cpuinfo | sort -u   -- 物理CPU个数
+grep 'core id' /proc/cpuinfo | sort -u | wc -l   -- CPU核心数
+grep 'processor' /proc/cpuinfo | sort -u | wc -l  -- 最大线程数
+
 
 # 查看当前文件夹下文件的大小
 du -sh *
@@ -66,6 +70,7 @@ tail -f filename
 who -b 
 查看历史重启时间命令
 last reboot
+
 
 
 3.
