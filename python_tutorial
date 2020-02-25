@@ -42,13 +42,17 @@ def to_bytes(bytes_or_str):
     else:
         value = bytes_or_str
     return value  # Instance of bytes
+
     
 Use list(dict, set) comprehension instead of using map or filter.
 Use generator expression while encountering big data---用过一轮就不能用了
 
 
+# 对象转字典
+dict((name, getattr(tick, name)) for name in dir(tick) if not name.startswith('__'))
 
-generator
+
+# generator
 text = ['agag', 'bababagag', 'gadgagagaha']
 it = (len(x) for x in text)
 ti = [len(x) for x in text]
