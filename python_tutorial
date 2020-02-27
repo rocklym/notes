@@ -52,6 +52,46 @@ Use generator expression while encountering big data---用过一轮就不能用�
 dict((name, getattr(tick, name)) for name in dir(tick) if not name.startswith('__'))
 
 
+### 索引 ###
+# 一维，行列分开
+df[:3]
+df['a':'c']
+df[[True,True,True,False,False,False]] 
+df[df['A']>0] # 
+df[(df['A']>0) | (df['B']>0)] 
+df[(df['A']>0) & (df['C']>0)] 
+
+df['A']
+df[['A','B']]
+
+# 二维，先行后列
+df.loc['a':'d', :]   #  标签索引
+df.loc[:, df.loc['a']>0]  # a行大于0的列
+
+df.iloc[[0, 2, 4], :]  # 整数索引
+df.iloc[:, 0:3]
+
+df.ix[0:3, ['A', 'C']]  # 标签、整数混合索引
+
+# 定位单元格
+df.at['a', 'A']
+df.iat[1, 2]
+
+
+### 常用函数 ###
+# 数据类型转换
+df['TradingDay'] = df['TradingDay'].astype(str)
+
+# 筛选
+_df = df[~df.TradingDay.isin([trading_day])]   # 不要20191007的数据
+
+# 写文件
+_df.to_csv(os.path.join(BASE_PATH, DATA_TYPES[365], day_data_path, csv), index=False)  # 不输出index
+
+# pip加速
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pandas
+
+
 # generator
 text = ['agag', 'bababagag', 'gadgagagaha']
 it = (len(x) for x in text)
