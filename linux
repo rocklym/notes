@@ -23,6 +23,11 @@ lsof -i:5000
 kill -9 4356
 killall gunicorn
 
+
+# bash脚本无法运行
+:set ff=unix
+
+
 nc -z -w1 192.168.152.132 5986
 echo $?
 
