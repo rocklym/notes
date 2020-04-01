@@ -109,6 +109,9 @@ print(next(it))
 9   ---一个一个输出
 
 
+# 两个list求差异部分
+list(set(A) ^ set(B))
+
 
 syntax
 1.a try statement’s else clause runs when no exception occurs, and a loop’s else clause runs when no break occurs.
