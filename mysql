@@ -47,6 +47,11 @@ alter table materials add foreign key(type_id) references material_types(id);
 show create table materials;
 ALTER TABLE materials DROP FOREIGN KEY materials_ibfk_1;
 
+# 删除主键client_id,用id做主键
+alter table t_client_management drop primary key;
+alter table t_client_management add primary key(id);
+
+
 # 插入数值
 insert into operators ('login','password_hash') values ('rock','pbkdf2:sha1:1000$1Mj0a7Qo$0db9c545d78cf7f8d65ba5920ec1ef3857f2fc04');
 
