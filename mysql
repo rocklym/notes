@@ -83,6 +83,12 @@ select distinct protype from broker_info;
 create unique index userid on userrote_info(userid);
 alter table userrote_info drop index userid;
 
+# 从一张表导部分数据到另一张表
+insert into t_image_file(file_name,md5) select name,md5 from file_ico;
+
+# 判断为null
+update t_image_file set image_type=2 where image_type is null;
+
 .open flask.db
 .table
 
