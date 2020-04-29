@@ -64,6 +64,11 @@ select count(*) from user_login_info;
 # 只查询前10个数据
 select name from rules limit 10;
 
+# 查重及去除
+select * from t_file_management where file_name in (select file_name from t_file_management group by file_name having count(file_name) > 1);
+delete from t_file_management where id=6 or id=48 or id=53 or id=102;
+
+
 # 查询ufx开头的项
 select id from broker_info where apitype like "ufx%";
 
