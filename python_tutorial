@@ -243,4 +243,12 @@ collections:
 5.Counter: dict的一个子类，当key不存在时不返回keyError而返回数字0，用于统计。
 
 
+# 交、并、补
+list_1 = [1, 2, 5, 7, 9]
+list_2 = [2, 4, 6, 9]
+union = list(set(list_1) & set(list_2))  # 交集，[9, 2]
+intersection = list(set(list_1) | set(list_2))  # 并集，[1, 2, 4, 5, 6, 7, 9]
+minus = list(set(list_1) - set(union))  # 差集，[1, 5, 7]
+
+
 
